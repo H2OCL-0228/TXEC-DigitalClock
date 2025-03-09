@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html,
+        body {
+          /* filter: grayscale(100%);
+                filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); */
+          margin: 0px;
+          padding: 0px;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          overflow-x: hidden;
+          padding-bottom: 50px;
+          overflow-y: hidden;
+        }
+    
+        header {
+          height: 120px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 80px;
+          font-weight: bold;
+          background-color: rgb(122, 122, 253);
+          color: rgb(255, 255, 255);
+        }
+    
+        main {
+          height: 85%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-bottom: 50px;
+        }
+    
+        .dateBox {
+          padding-top: 20px;
+          padding-bottom: 20px;
+          border-radius: 10px;
+          margin-top: 20px;
+          height: auto;
+          width: 95%;
+          background-color: rgb(214, 214, 255);
+          display: flex;
+          flex-shrink: 0px;
+          flex-direction: column;
+          align-items: center;
+        }
+    
+        .dateHeader {
+          height: 30px;
+          width: auto;
+          font-size: 25px;
+          color: black;
+        }
+    
+        .added {
+          margin-top: 10px;
+          padding: 5px;
+          border-radius: 5px;
+          height: auto;
+          width: 85%;
+          background-color: rgb(228, 255, 187);
+          color: black;
+        }
+    
+        .fixed {
+          margin-top: 10px;
+          padding: 5px;
+          border-radius: 5px;
+          height: auto;
+          width: 85%;
+          background-color: rgb(255, 121, 121);
+          color: black;
+        }
+    
+        .better {
+          margin-top: 10px;
+          padding: 5px;
+          border-radius: 5px;
+          height: auto;
+          width: 85%;
+          background-color: rgb(0, 247, 255);
+          color: black;
+        }
+    
+        h3 {
+          margin: 0px;
+        }
+    
+        .inMainBox {
+          height: 700px;
+          width: 90%;
+          padding-top: 0px;
+          padding-left: 20px;
+          padding-right: 20px;
+          padding-bottom: 20px;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+    
+        ::-webkit-scrollbar {
+          width: 7px;
+          background-color: rgba(240, 248, 255, 0);
+        }
+    
+        ::-webkit-scrollbar-thumb {
+          width: 10px;
+          border-radius: 7px;
+          background-color: rgba(255, 70, 70, 0.5);
+        }
+    
+        @media screen and (max-width:600px) {
+          header {
+            font-size: 50px;
+          }
+    
+          .dateHeader {
+            font-size: 15px;
+          }
+        }
+    
+        a{
+          color:black;
+          text-decoration: none;
+          transition: .3s;
+        }
+    
+        a:hover{
+          background-color: rgba(255, 255, 255, 0.793);
+          border-radius: 10px;
+        }
+    </style>
+    <title>关于数字时钟</title>
+</head>
+
+<body>
+    <header>
+        关于
+    </header>
+    <main>
+        <div class="inMainBox">
+          <div class="dateBox" id="shengMing">
+            <div class="dateHeader">
+              声明
+            </div>
+            <div class="better">
+              <h3>本页面维护：806YHY<a href="https://txecyhy.github.io">@我的博客</a></h3>
+              <h3>数字时钟基于开源项目考试时钟开发，感谢开源项目的开发者们！</h3>
+              <b>数字时钟是一个大屏教学辅助网站，为方便晚修时间管理时间和各种需要记录时间的场景。您当前使用的是
+              V3.5.2,可能存在bug或不稳定现象，请您谅解。
+              数字时钟开发人员:<a href="https://txecyhy.github.io">806杨浩宇</a>、801李文杰、信息科组钟鹏老师，感谢各位开发人员的贡献！</b>
+              <b><p><font color="#FF0000">注意！本关于页面从2025年3月1日起不再记录从V3.5.1b版本之后的版本更新, 请查看806YHY的博客, 里面有更新说明!</font></p></b>
+            </div>
+            </div>
+            <div class="dateBox" id="v3.5.1b">
+              <div class="dateHeader">
+                2025年2月15日——V3.5.1b版本
+              </div>
+              <div class="added">
+                <h3>添加或更改</h3>
+                1、更新初二晚修前半期安排表<br>
+                2、修改了一些大标题</div>
+            </div>
+            <div class="dateBox" id="v3.3.5">
+              <div class="dateHeader">
+                2024年10月17日——V3.3.5版本
+              </div>
+              <div class="added">
+                <h3>添加或更改</h3>
+                1、添加了更多背景: ZP-操场 YHY-教学楼、风景<br>
+                2、背景图片格式可兼容，不再只支持png格式</div>
+            </div>
+            <div class="dateBox" id="v3.3.0">
+              <div class="dateHeader">
+                2024年10月16日——V3.3.0版本
+              </div>
+              <div class="added">
+                <h3>添加或更改</h3>
+                1、添加了更多背景<br>
+                2、无法再更改大标语</div>
+              <div class="fixed">
+                <h3>修复</h3>
+                修复了已知bug
+              </div>
+            </div>
+</body>
+</html>

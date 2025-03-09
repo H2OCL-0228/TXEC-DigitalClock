@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<!-- 腾云技协 Gitee 学生版: H2O_CL/TXEC-NightTimeClock_GS -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="塘厦二初腾云技协(TXECHYES@Github)">
+  <meta name="description" content="数字时钟用于塘厦第二初级中学展示科目、起止时间、当前时间等信息。背景由二初图库提供，祝各位同学使用心情愉悦">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/all.min.css"
+    media="none" onload="this.media='all'">
+  <link rel="stylesheet" href="https://fonts.font.im/css?family=Ubuntu:400,700" media="none" onload="this.media='all'">
+  <base target="_blank">
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "axvxzgha2e");
+  </script>
+  <title>初二数字时钟</title>
+</head>
+
+<body>
+  <link rel="stylesheet" href="./css/cover.css">
+  <div id="coverLaunch">
+    <p style="color: white; font-weight: bold;" >数字时钟用于塘厦第二初级中学展示科目、起止时间、当前时间等信息。背景由二初图库提供，祝各位同学使用心情愉悦</p>
+  </div>
+
+  <div id="cover">
+    <div id="coverMask"></div>
+    <div></div>
+    <div class="coverMain">
+      <div class="info">
+        <div class="title skew">
+          <div class="reskew">
+            <p id="coverTitle">数字时钟</p>
+            <p id="coverAuthor">腾云技协</p>
+          </div>
+          <div class="titleBadge">
+            <div class="reskew">
+              <p style="font-size:1.5em">7</p>
+              <p style="font-size:.6em">EZ</p>
+            </div>
+          </div>
+        </div>
+        <div class="desc skew">
+          <p class="reskew">
+            <span class="dim">Chart</span><br>
+            <span id="coverOrigin">塘厦第二初级中学</span>
+          </p>
+          <p class="reskew">
+            <span class="dim">Illustration</span><br>
+            <span id="bgHook">二初图库</span>
+          </p>
+        </div>
+      </div>
+      <div class="cover skew">
+        <div class="reskew" id="coverImage"></div>
+      </div>
+    </div>
+    <div class="dim space-between">
+      <p>Tip: <span id="coverTips"></span></p>
+      <p class="loadingBar">Loading~</p>
+    </div>
+  </div>
+
+  <script src="./js/cover.js"></script>
+
+  <div id="main" style="opacity:1;font-size:1em;">
+    <div class="notify">
+      <div id="verify">
+        <i class="fa-solid fa-shield"></i>
+        <span id="verifycontent">安全提示内容</span>
+      </div>
+      <div id="msg">
+        <p>
+          <i class="fa-solid fa-circle-info"></i>
+          <span id="msgcontent">消息内容</span>
+        </p>
+        <a class="fa-solid fa-xmark"></a>
+      </div>
+    </div>
+
+    <div>
+      <nav class="space-between">
+        <h2 id="mainslogan">数字时钟</h2>
+
+        <div class="sub space-between space">
+          <div class="dropdown" style="min-width:5.5em;">
+            <a class="btn">
+              <div class="space-between">
+                <span id="type">选择类型</span>
+                <i class="fa-solid fa-caret-down"></i>
+              </div>
+            </a>
+            <div id="typelist" style="width:180px;">
+              <a onclick="subject.switch(24)">周一晚修</a>
+              <a onclick="subject.switch(241)">周二晚修</a>
+              <a onclick="subject.switch(242)">周三晚修</a>
+              <a onclick="subject.switch(251)">周四晚修</a>
+              <a onclick="subject.switch(252)">周五晚修</a>
+              <a onclick="subject.switch(263)">周六自习</a>
+              <a onclick="subject.switch(261)">单周自主反馈</a>
+              <a onclick="subject.switch(262)">双周自主反馈</a>
+              <!-- <a onclick="subject.switch(23)">23届<span class="shield">彩蛋</span></a> -->
+              <a onclick="setTemp()"><i class="fa-regular fa-square-plus"></i> 临时</a>
+              <a onclick="setTimer()"><i class="fa-solid fa-stopwatch"></i> 倒计时</a>
+            </div>
+          </div>
+
+          <a class="fa-solid fa-compass hilit" href="http://10.50.216.250:11451" data-sub="导航"></a>
+
+          <div class="dropdown">
+            <a class="fa-regular fa-images" data-sub="背景"></a>
+            <div style="right:-4em;min-width:13em;">
+              <div><i class="fa-solid fa-wand-magic-sparkles"></i> 选张背景
+                <div class="shieldlist" id="bgVolList">
+                  <a onclick="playCover(bg())">全部</a>
+                </div>
+              </div>
+              <div>
+                <p>
+                  <span class="shield">对数字时钟感兴趣的伙伴可加入二初腾云技协，为塘厦第二初级中学的数字化建设奉献一份力量!</span>
+                  <span class="shield">申请入群时：请以班级+姓名为标识进行申请</span>
+                  <i class="fa-solid fa-users"></i> 腾云技协QQ群：465702212
+                </p>
+                <!-- <p class="dim">遵照
+                  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>
+                  协议使用作品。
+                </p> -->
+                <a href="https://txecyhy.github.io/p/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%87%B3%E4%BA%8C%E5%88%9D%E5%9B%BE%E5%BA%93%E5%8F%8A%E5%B7%B2%E9%80%9A%E8%BF%87%E5%9B%BE%E7%89%87%E5%90%8D%E5%8D%95/">
+                  <i class="fa-solid fa-file-arrow-up"></i> 上传图片至图库教程点我
+                </a>
+              </div>
+              <a href="https://img.tg/album/er-chu-tu-ku.Oedxj">
+                <i class="fa-solid fa-box-archive"></i> 二初图库
+              </a>
+            </div>
+          </div>
+
+          <a onclick="document.documentElement.style.filter='';this.style.display='none'"
+            class="fa-solid fa-circle-half-stroke" id="filterSwitch" style="display:none" data-sub="关闭滤镜"></a>
+
+          <div class="dropdown">
+            <a class="fa-solid fa-bars" data-sub="菜单"></a>
+            <div style="right:-2em;min-width:10em;">
+              <!-- <a download='跳转到数字时钟' href='/jump-to-exam-clock'>
+                <i class="fa-solid fa-file-arrow-down"></i> 下载快捷方式
+                <p class="dim">失败可右键-目标链接另存为</p>
+              </a> -->
+              <a> <i class="fa-brands fa-qq"></i>反馈QQ号
+                <p class="dim">QQ号：3586638355(806yhy)/3857135022(801lwj)</p>
+              </a>
+              <a href="./about/about.html">
+                <i class="fa-solid fa-bug"></i> 关于界面
+              </a>
+              <a href="./forum/digital_clock_forum.html">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> 数字时钟新功能讨论平台
+              </a>
+              <div><i class="fa-solid fa-gears"></i> 开发选项
+                <div class="shieldlist">
+                 <!-- <a onclick="slogan.main=prompt('晚修大标语',slogan.main)||slogan.main"> -->
+                    <a onclick="sendFeatureRemoved('试图修改大标语时触发')">
+                    <i class="fa-solid fa-quote-left"></i> 大标语</a>
+                  <a onclick="document.getElementById('subject').innerHTML=prompt('科目名称',subject.name)||subject.name">
+                    <i class="fa-solid fa-book"></i> 科目</a>
+                  <a onclick="fixMinutes(subject.start,'开始时间')">
+                    <i class="fa-solid fa-hourglass-start"></i> 开始时间</a>
+                  <a onclick="fixMinutes(subject.end,'结束时间')">
+                    <i class="fa-solid fa-hourglass-end"></i> 结束时间</a>
+                  <!-- <a onclick="subject.to(prompt('晚修类型',subject.current))">
+                  <i class="fa-solid fa-box-archive"></i> 类型</a>  -->
+                  <!-- “离谱了，同样的代码在控制台和点击执行出来的就不一样” -->
+                  <!-- <a onclick="document.getElementById('type').innerHTML=prompt('机构名称','二初教育')
+                    ||exam[subject.current].schedule()">
+                    <i class="fa-regular fa-building"></i> 机构</a> -->
+                  <a href="?debug=1"><i class="fa-solid fa-bug"></i> 调试</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a class="fa-solid fa-expand" id="fullscreen" data-sub="全屏" onclick="fullscreen()"></a>
+        </div>
+      </nav>
+
+      <div class="dim" id="subslogan"></div>
+
+      <div class="bar">
+        <div id="bar"></div>
+      </div>
+
+      <b class="card">
+        <div>
+          <div id="subject" contenteditable>科目</div>
+          <div id="duration">16:66~17:77</div>
+        </div>
+        <div>
+          <div id="clock">18:88</div>
+        </div>
+        <div>
+          <div>
+            <span id="timer">199</span>
+            <span class="dim" id="timersub">sub</span>
+          </div>
+          <div id="activity">当前科目</div>
+        </div>
+        <!-- <div><br><br><br>test<br><br><br></div> -->
+      </b>
+    </div>
+
+    <footer>
+      <div class="space-between space">
+        <p -data-title="润了"><i class="fa-solid fa-code"></i>
+          Coding by: 806YHY, 801lwj Mentor：ZP</p>
+        </p>
+        <p><i class="fa-solid fa-user-group"></i>
+          此动态时钟由东莞市塘厦第二初级中学腾云技协维护, 如果发现课表不对或其他问题, 在校内请联系钟鹏老师!
+        </p>
+        <p><i class="fa-solid fa-newspaper"></i>
+          新闻：愿所有中考考生，看到成绩后，脸上都挂着笑容，就算流泪也是喜极而泣。
+        </p>
+      </div>
+      <div class="space-between space">
+        <p data-title="来自二初图库">
+          <i class="fa-solid fa-image"></i>
+          <span id="bg">背景：学校大门</span>
+        </p>
+        <p><a href="https://gitee.com/txecyhy/txec-eveningself-studyclock"><i class="fa-brands fa-git"></i>
+            源码 <span id="v3.5.3"></span></a>
+        </p>
+        <p><i class="fa-solid fa-file-arrow-up"></i>
+          v3.5.3 增加了数字时钟新功能讨论平台, 如果你有建议, 可以在平台留言。(详见菜单)
+        </p>
+      </div>
+    </footer>
+  </div>
+  <script src="./js/clock.js"></script>
+  <script src="./js/TimeGradeEight.js" defer data-dependencies="clock"></script>
+  <script src="./js/search.js" defer data-dependencies="clock"></script>
+  <script src="./js/commit.js"
+    onload="getLastCommit(document.getElementById('3.0.0'), 'H2O_CL/TXEC-DigitalClock-GE')"></script>
+  <script src="./js/msg.js"></script>
+  <script src="./js/interact.js" defer data-dependencies="msg"></script>
+  <script src="./js/gallery.js" defer data-dependencies="msg,interact"></script>
+
+  <script>
+    // send("我们需要人员提供晚修信息，详见页面底部。");
+  </script>
+
+</body>
+
+</html>
