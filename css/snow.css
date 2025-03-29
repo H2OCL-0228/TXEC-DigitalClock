@@ -1,0 +1,41 @@
+.snow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: none;
+}
+.snow-toggle {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,0,0,0.3);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.snow-toggle:hover {
+  background: rgba(0,0,0,0.5);
+}
+.snow-toggle i {
+  color: #ccc;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5);
+  font-size: 1.2em;
+  transition: all 0.3s ease;
+}
+.snow-toggle.active i {
+  color: #00b4ff;
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 5px rgba(0,180,255,0.7));
+}

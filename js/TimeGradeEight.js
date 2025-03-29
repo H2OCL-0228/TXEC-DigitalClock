@@ -7,13 +7,12 @@ console.groupEnd();
 
 let specialDate = {
   gone22: parseInt((Date.now() - new Date(2022, 5, 9)) / 864E5),
-  cee24: parseInt((new Date(2024, 5, 8) - Date.now()) / 864E5),
+  cee24: parseInt((new Date(2025, 5, 31) - Date.now()) / 864E5),
 }
 
 exams["2024-10-14"] = {
   type: "段考复习",
-  //mainSlogan: `${specialDate.cee24}天后 峰顶相会`,    这里可选期中、期末考试
-  mainSlogan: `认真复习，认真对待初二第一次段考！`,
+  mainSlogan: `生地中考仅剩${specialDate.cee24}天，奋起冲、全力拼！`,
   schedule() {
   $("历史", today.date, "18:30", "19:00");
   $("生物", today.date, "19:00", "19:25");     
@@ -27,8 +26,8 @@ exams[24] = {
   author: "二初",
   origin: "TXEC",
   Mentor:'ZP',
-  mainSlogan: `请把你的作业写完`,
-  rollSlogan: ["加油！"],
+  mainSlogan: `生地中考仅剩${specialDate.cee24}天，奋起冲、全力拼！`,
+  rollSlogan: ["你可以一无所有，但绝不能一无是处。"],
   earlyAdmit: 2,
   schedule() {
     $("地理", today.date, "18:50", "19:10");
@@ -43,8 +42,8 @@ exams[241] = {
   author: "二初",
   origin: "TXEC",
   Mentor:'ZP',
-  mainSlogan: `在每个科目时间内完成每个科目的作业`,
-  rollSlogan: ["加油！"],
+  mainSlogan: `生地中考仅剩${specialDate.cee24}天，奋起冲、全力拼！`,
+  rollSlogan: ["心态决定高度，细节决定成败。"],
   schedule() {
     $("生物", today.date, "18:50", "19:10");
     $("数学", today.date, "19:10", "19:55");
@@ -58,8 +57,8 @@ exams[242] = {
   author: "二初",
   origin: "TXEC",
   Mentor:'ZP',
-  mainSlogan: `遇见二初，遇见美好！`,
-  rollSlogan: ["加油! "],
+  mainSlogan: `生地中考仅剩${specialDate.cee24}天，奋起冲、全力拼！`,
+  rollSlogan: ["此刻打盹，你将做梦；此刻学习，你将圆梦。"],
   schedule() {
     $("地理", today.date, "18:50", "19:10");
     $("数学", today.date, "19:10", "19:55");
@@ -73,42 +72,25 @@ exams[251] = {
   author: "二初",
   origin: "TXEC",
   Mentor:'ZP',
-  mainSlogan: `认真对待每一次作业!`,
-  rollSlogan: ["加油!"],
+  mainSlogan: `生地中考仅剩${specialDate.cee24}天，奋起冲、全力拼！`,
+  rollSlogan: ["笨鸟先飞早入林，笨人勤学早成材 —— 《省世格言》"],
   schedule() {
-    $("生物", today.date, "18:50", "19:20");
-    $("数学", today.date, "19:20", "19:55");
+    $("生物", today.date, "18:50", "19:10");
+    $("数学", today.date, "19:10", "19:55");
     $("语文", today.date, "19:55", "20:20");
     $("英语", today.date, "20:30", "21:00");
     $("物理", today.date, "21:00", "21:30");
   }
 };
 exams[252] = {
-  type: "周五晚修",
+  type: "周五考试",
   author: "二初",
   origin: "TXEC",
   Mentor:'ZP',
-  mainSlogan: `学习新思想，争做新青年！`,
-  rollSlogan: ["加油!"],
+  mainSlogan: `生地中考仅剩${specialDate.cee24}天，奋起冲、全力拼！`,
+  rollSlogan: ["天才是百分之一的灵感加上百分之九十九的努力。"],
   schedule() {
-    $("自习", today.date, "18:50", "19:10");
-    $("数学", today.date, "19:10", "19:55");
-    $("地生复习", today.date, "19:55", "20:20");
-    $("双地单生反馈", today.date, "20:30", "21:30");
-  }
-};
-exams[263] = {
-  type: "周六自习",
-  author: "二初",
-  origin: "TXEC",
-  Mentor:'ZP',
-  mainSlogan: `认真自习!`,
-  rollSlogan: ["加油!"],
-  schedule() {
-    $("语文", today.date, "7:10", "7:50");
-    $("数学", today.date, "7:50", "8:30");
-    $("英语", today.date, "8:40", "9:10");
-    $("物理", today.date, "9:10", "9:30");
+    $("双地单<br>生反馈", today.date, "17:00", "17:40");
   }
 };
 exams[261] = {
@@ -116,8 +98,8 @@ exams[261] = {
   author: "二初",
   origin: "TXEC",
   Mentor:'ZP',
-  mainSlogan: `文明二初, 从你我做起!`,
-  rollSlogan: ["加油!"],
+  mainSlogan: `生地中考仅剩${specialDate.cee24}天，奋起冲、全力拼！`,
+  rollSlogan: ["欲穷千里目，更上一层楼。 —— 王之涣"],
   schedule() {
     $("数学", today.date, "18:30", "19:20");
     $("道法", today.date, "19:20", "19:50");
@@ -130,8 +112,8 @@ exams[262] = {
   author: "二初",
   origin: "TXEC",
   Mentor:'ZP',
-  mainSlogan: `文明二初, 从你我做起!`,
-  rollSlogan: ["加油!"],
+  mainSlogan: `生地中考仅剩${specialDate.cee24}天，奋起冲、全力拼！`,
+  rollSlogan: ["人不是因为没有信念而失败，而是因为不能把信念化成行动，并且坚持到底。 —— 戴尔·卡耐基"],
   schedule() {
     $("数学", today.date, "18:30", "19:30");
     $("物理", today.date, "19:30", "20:20");

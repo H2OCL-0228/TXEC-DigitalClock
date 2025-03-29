@@ -21,9 +21,14 @@
     })(window, document, "clarity", "script", "axvxzgha2e");
   </script>
   <title>初二数字时钟</title>
+  <link rel="stylesheet" href="./css/snow.css">
 </head>
 
 <body>
+  <div class="snow-container"></div>
+  <div class="snow-toggle" title="切换下雪效果">
+    <i class="fa-solid fa-snowflake"></i>
+  </div>
   <link rel="stylesheet" href="./css/cover.css">
   <div id="coverLaunch">
     <p style="color: white; font-weight: bold;" >数字时钟用于塘厦第二初级中学展示科目、起止时间、当前时间等信息。背景由二初图库提供，祝各位同学使用心情愉悦</p>
@@ -102,7 +107,6 @@
               <a onclick="subject.switch(242)">周三晚修</a>
               <a onclick="subject.switch(251)">周四晚修</a>
               <a onclick="subject.switch(252)">周五晚修</a>
-              <a onclick="subject.switch(263)">周六自习</a>
               <a onclick="subject.switch(261)">单周自主反馈</a>
               <a onclick="subject.switch(262)">双周自主反馈</a>
               <!-- <a onclick="subject.switch(23)">23届<span class="shield">彩蛋</span></a> -->
@@ -114,7 +118,7 @@
           <a class="fa-solid fa-compass hilit" href="http://10.50.216.250:11451" data-sub="导航"></a>
 
           <div class="dropdown">
-            <a class="fa-regular fa-images" data-sub="背景"></a>
+            <a class="fa-solid fa-images" data-sub="背景"></a>
             <div style="right:-4em;min-width:13em;">
               <div><i class="fa-solid fa-wand-magic-sparkles"></i> 选张背景
                 <div class="shieldlist" id="bgVolList">
@@ -153,12 +157,6 @@
               </a> -->
               <a> <i class="fa-brands fa-qq"></i>反馈QQ号
                 <p class="dim">QQ号：3586638355(806yhy)/3857135022(801lwj)</p>
-              </a>
-              <a href="./about/about.html">
-                <i class="fa-solid fa-bug"></i> 关于界面
-              </a>
-              <a href="./forum/digital_clock_forum.html">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> 数字时钟新功能讨论平台
               </a>
               <div><i class="fa-solid fa-gears"></i> 开发选项
                 <div class="shieldlist">
@@ -230,27 +228,35 @@
           <span id="bg">背景：学校大门</span>
         </p>
         <p><a href="https://gitee.com/txecyhy/txec-eveningself-studyclock"><i class="fa-brands fa-git"></i>
-            源码 <span id="v3.5.3"></span></a>
+            源码 <span id="v3.5.3-R2">(Gitee)</span></a>
         </p>
         <p><i class="fa-solid fa-file-arrow-up"></i>
-          v3.5.3 增加了数字时钟新功能讨论平台, 如果你有建议, 可以在平台留言。(详见菜单)
+          v3.5.3-R2 一些小更改, 根据学校要求删除了讨论区
         </p>
       </div>
     </footer>
   </div>
+  <script src="./js/cover.js"></script>
   <script src="./js/clock.js"></script>
+  <script>
+    // 从Gitee API获取更新
+    fetch('https://gitee.com/api/v5/repos/h2ocl/txec-gedc-preview')
+      .then(response => response.json())
+      .then(data => {
+        const updateTime = new Date(data.updated_at).toLocaleString('zh-CN');
+        const versionElement = document.getElementById('v3.5.3-R2-Release');
+        versionElement.innerHTML = `(Gitee) 最后更新: ${updateTime}`;
+      })
+      .catch(error => {
+        console.error('获取更新失败:', error);
+      });
+  </script>
   <script src="./js/TimeGradeEight.js" defer data-dependencies="clock"></script>
   <script src="./js/search.js" defer data-dependencies="clock"></script>
-  <script src="./js/commit.js"
-    onload="getLastCommit(document.getElementById('3.0.0'), 'H2O_CL/TXEC-DigitalClock-GE')"></script>
   <script src="./js/msg.js"></script>
   <script src="./js/interact.js" defer data-dependencies="msg"></script>
   <script src="./js/gallery.js" defer data-dependencies="msg,interact"></script>
-
-  <script>
-    // send("我们需要人员提供晚修信息，详见页面底部。");
-  </script>
-
+  <script src="./js/commit.js" 
+    onload="getLastCommit(document.getElementById('v3.5.3-R2'), 'txecyhy/txec-eveningself-studyclock')"></script>
+  <script src="./js/snow.js"></script>
 </body>
-
-</html>
