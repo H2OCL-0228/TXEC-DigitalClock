@@ -74,7 +74,7 @@
   <script src="./js/cover.js"></script>
 
   <div id="main" style="opacity:1;font-size:1em;">
-    <div class="notify">
+    <div class="notify" style="position:sticky;top:0;z-index:100;">
       <div id="verify">
         <i class="fa-solid fa-shield"></i>
         <span id="verifycontent">安全提示内容</span>
@@ -88,8 +88,8 @@
       </div>
     </div>
 
-    <div>
-      <nav class="space-between">
+    <div>  <!-- 移除min-height:100vh -->
+      <nav class="space-between" style="position:sticky;top:60px;z-index:99;">
         <h2 id="mainslogan">数字时钟</h2>
 
         <div class="sub space-between space">
@@ -160,22 +160,87 @@
               <div><i class="fa-solid fa-gears"></i> 开发选项
                 <div class="shieldlist">
                  <!-- <a onclick="slogan.main=prompt('晚修大标语',slogan.main)||slogan.main"> -->
-                  <a onclick="sendFeatureRemoved('试图修改大标语时触发')">
+                    <a onclick="sendFeatureRemoved('试图修改大标语时触发')">
                     <i class="fa-solid fa-quote-left"></i> 大标语</a>
-                  <!--<a onclick="slogan.sub=[prompt('晚修副标语',slogan.sub[0])]||slogan.sub">
-                    <i class="fa-solid fa-quote-right"></i> 小标语</a>-->
                   <a onclick="document.getElementById('subject').innerHTML=prompt('科目名称',subject.name)||subject.name">
                     <i class="fa-solid fa-book"></i> 科目</a>
                   <a onclick="fixMinutes(subject.start,'开始时间')">
                     <i class="fa-solid fa-hourglass-start"></i> 开始时间</a>
                   <a onclick="fixMinutes(subject.end,'结束时间')">
                     <i class="fa-solid fa-hourglass-end"></i> 结束时间</a>
-                  <!-- <a onclick="subject.to(prompt('晚修类型',subject.current))"> -->
-                  <!-- <i class="fa-solid fa-box-archive"></i> 类型</a> -->
-                  <!--<a onclick="document.getElementById('type').innerHTML=prompt('机构名称','二初教育')
+                  <!-- <a onclick="subject.to(prompt('晚修类型',subject.current))">
+                  <i class="fa-solid fa-box-archive"></i> 类型</a>  -->
+                  <!-- “离谱了，同样的代码在控制台和点击执行出来的就不一样” -->
+                  <!-- <a onclick="document.getElementById('type').innerHTML=prompt('机构名称','二初教育')
                     ||exam[subject.current].schedule()">
                     <i class="fa-regular fa-building"></i> 机构</a> -->
                   <a href="?debug=1"><i class="fa-solid fa-bug"></i> 调试</a>
+                </div>
+              </div>
+              <div><i class="fa-solid fa-flask"></i> 实验性功能(Alpha)
+                <div class="shieldlist">
+                  <div style="padding:10px;color:#ff9800;font-size:1em;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> 
+                    警告：这些功能仍在测试中，可能会影响系统稳定性
+                  </div>
+                  <!-- 实验性功能将在此处添加 -->
+                </div>
+              </div>
+
+              <div><i class="fa-solid fa-palette"></i> 文字颜色
+                <div class="shieldlist">
+                  <!-- 单色选择块 -->
+                  <div style="padding:10px;display:grid;grid-template-columns:repeat(5,1fr);gap:5px;">
+                    <div style="background:#ff0000;height:20px;border-radius:3px;" onclick="setTextColor('#ff0000')"></div>
+                    <div style="background:#00ff00;height:20px;border-radius:3px;" onclick="setTextColor('#00ff00')"></div>
+                    <div style="background:#0000ff;height:20px;border-radius:3px;" onclick="setTextColor('#0000ff')"></div>
+                    <div style="background:#ffff00;height:20px;border-radius:3px;" onclick="setTextColor('#ffff00')"></div>
+                    <div style="background:#ff00ff;height:20px;border-radius:3px;" onclick="setTextColor('#ff00ff')"></div>
+                    <div style="background:#00ffff;height:20px;border-radius:3px;" onclick="setTextColor('#00ffff')"></div>
+                    <div style="background:#ffffff;height:20px;border-radius:3px;" onclick="setTextColor('#ffffff')"></div>
+                    <div style="background:#ff8800;height:20px;border-radius:3px;" onclick="setTextColor('#ff8800')"></div>
+                    <div style="background:#8800ff;height:20px;border-radius:3px;" onclick="setTextColor('#8800ff')"></div>
+                    <div style="background:#0088ff;height:20px;border-radius:3px;" onclick="setTextColor('#0088ff')"></div>
+                  </div>
+                  <div style="padding:10px;display:flex;align-items:center">
+                    <input type="color" id="customColor" style="width:100px" onchange="setTextColor(this.value)">
+                    <span style="margin-left:10px">自定义</span>
+                  </div>
+                  
+                  <!-- 渐变色选择区域 -->
+                  <div style="padding:10px;">
+                    <div style="margin-bottom:8px;font-size:0.9em;color:#aaa;">
+                      <i class="fa-solid fa-fill-drip"></i> 渐变色选项
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px;">
+                      <div class="gradient-btn" style="background:linear-gradient(90deg, #ff0000, #0000ff);" 
+                           onclick="setGradientColor('#ff0000', '#0000ff')"></div>
+                      <div class="gradient-btn" style="background:linear-gradient(90deg, #00ff00, #ff00ff);" 
+                           onclick="setGradientColor('#00ff00', '#ff00ff')"></div>
+                      <div class="gradient-btn" style="background:linear-gradient(90deg, #0000ff, #ffff00);" 
+                           onclick="setGradientColor('#0000ff', '#ffff00')"></div>
+                    </div>
+                    <div style="display:flex;gap:8px;">
+                      <input type="color" id="gradientColor1" style="flex:1;height:30px;" title="起始颜色">
+                      <input type="color" id="gradientColor2" style="flex:1;height:30px;" title="结束颜色">
+                      <button onclick="applyCustomGradient()" style="padding:0 8px;border-radius:4px;background:#444;color:white;">
+                        <i class="fa-solid fa-check"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div><i class="fa-solid fa-snowflake"></i> 雪量控制
+                <div class="shieldlist">
+                  <div style="padding:10px;display:flex;align-items:center">
+                    <input type="range" min="0" max="500" value="50" id="snowAmount" 
+                      style="width:100px" oninput="updateSnowAmount(this.value)">
+                    <span id="snowValue" style="margin-left:10px">50</span>
+                  </div>
+                  <div style="padding:10px;color:#ff9800;font-size:0.8em;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> 
+                    雪花值过大可能会影响班级一体机，请谨慎调整雪量！
+                  </div>
                 </div>
               </div>
             </div>
@@ -239,6 +304,31 @@
   </div>
   <script src="./js/cover.js"></script>
   <script src="./js/clock.js"></script>
+  <!-- 添加Gitee API更新代码 -->
+  <script>
+    // 从Gitee API获取更新
+    fetch('https://gitee.com/api/v5/repos/h2ocl/txec-gedc-preview')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const updateTime = new Date(data.updated_at).toLocaleString('zh-CN');
+        const versionElement = document.getElementById('v3.5.3-R2');
+        if(versionElement) {
+          versionElement.innerHTML = `(Gitee) 最后更新: ${updateTime}`;
+        }
+      })
+      .catch(error => {
+        console.error('获取更新失败:', error);
+        const versionElement = document.getElementById('v3.5.3-R2');
+        if(versionElement) {
+          versionElement.innerHTML = `(Gitee) 本地版本`;
+        }
+      });
+  </script>
   <script src="./js/TimeGradeSeven.js" defer data-dependencies="clock"></script>
   <script src="./js/search.js" defer data-dependencies="clock"></script>
   <script src="./js/msg.js"></script>
@@ -247,4 +337,5 @@
   <script src="./js/commit.js" 
     onload="getLastCommit(document.getElementById('v3.5.3-R2'), 'txecyhy/txec-eveningself-studyclock')"></script>
   <script src="./js/snow.js"></script>
+  <script src="./js/color.js" defer></script>
 </body>

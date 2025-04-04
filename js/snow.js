@@ -88,3 +88,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+
+function createSnowflake() {
+  // 检查当前雪花数量是否已达到最大值
+  if(snowflakes.length >= maxSnowflakes) return;
+  
+  const flake = document.createElement('div');
+  flake.className = 'snowflake';
+  
+  // 随机位置和大小
+  const size = Math.random() * 10 + 5;
+  flake.style.width = size + 'px';
+  flake.style.height = size + 'px';
+  flake.style.left = Math.random() * window.innerWidth + 'px';
+  
+  document.querySelector('.snow-container').appendChild(flake);
+  
+  const snowflakeObj = {
+    element: flake,
+    speed: 1 + Math.random() * 2, // 固定速度范围1-3
+    x: parseInt(flake.style.left),
+    y: -10
+  };
+  snowflakes.push(snowflakeObj);
+}
+
+function animateSnowflakes() {
+  snowflakes.forEach((flake, index) => {
+    flake.y += flake.speed;
+    flake.x += Math.sin(flake.y * 0.01) * 0.5; // 轻微左右摆动
+    
+    flake.element.style.transform = `translate(${flake.x}px, ${flake.y}px)`;
+    
+    // 如果雪花落到屏幕底部，重新从顶部开始
+    if(flake.y > window.innerHeight) {
+      flake.y = -10;
+      flake.x = Math.random() * window.innerWidth;
+    }
+  });
+  
+  requestAnimationFrame(animateSnowflakes);
+}
+
+// 初始化
+updateSnowAmount(50); // 默认50个雪花
+animateSnowflakes();

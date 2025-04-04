@@ -120,3 +120,13 @@ exams[262] = {
     $("英语", today.date, "20:30", "21:30");
   }
 };
+exams[263] = {
+  type: "纯时钟/自定义",
+  author: "二初",
+  origin: "TXEC",
+  Mentor:'ZP',
+  mainSlogan: `生地中考仅剩${specialDate.cee24}天，奋起冲、全力拼！`,
+  rollSlogan: ["只有一条路不能选择——那就是放弃的路；只有一条路不能拒绝——那就是成长的路。"],
+  schedule() {
+  }
+}

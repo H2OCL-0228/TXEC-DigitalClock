@@ -75,7 +75,7 @@
   <script src="./js/cover.js"></script>
 
   <div id="main" style="opacity:1;font-size:1em;">
-    <div class="notify">
+    <div class="notify" style="position:sticky;top:0;z-index:100;">
       <div id="verify">
         <i class="fa-solid fa-shield"></i>
         <span id="verifycontent">安全提示内容</span>
@@ -89,8 +89,8 @@
       </div>
     </div>
 
-    <div>
-      <nav class="space-between">
+    <div>  <!-- 移除min-height:100vh -->
+      <nav class="space-between" style="position:sticky;top:60px;z-index:99;">
         <h2 id="mainslogan">数字时钟</h2>
 
         <div class="sub space-between space">
@@ -106,7 +106,7 @@
               <a onclick="subject.switch(241)">周二晚修</a>
               <a onclick="subject.switch(242)">周三晚修</a>
               <a onclick="subject.switch(251)">周四晚修</a>
-              <a onclick="subject.switch(252)">周五晚修</a>
+              <a onclick="subject.switch(252)">周五考试</a>
               <a onclick="subject.switch(261)">单周自主反馈</a>
               <a onclick="subject.switch(262)">双周自主反馈</a>
               <!-- <a onclick="subject.switch(23)">23届<span class="shield">彩蛋</span></a> -->
@@ -178,6 +178,73 @@
                   <a href="?debug=1"><i class="fa-solid fa-bug"></i> 调试</a>
                 </div>
               </div>
+              <!-- 添加实验性功能区域 -->
+              <div><i class="fa-solid fa-flask"></i> 实验性功能(Alpha)
+                <div class="shieldlist">
+                  <div style="padding:10px;color:#ff9800;font-size:1em;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> 
+                    警告：这些功能仍在测试中，可能会影响系统稳定性
+                  </div>
+                  <!-- 实验性功能将在此处添加 -->
+                </div>
+              </div>
+
+              <div><i class="fa-solid fa-palette"></i> 文字颜色
+                <div class="shieldlist">
+                  <!-- 保留原有单色选择块 -->
+                  <div style="padding:10px;display:grid;grid-template-columns:repeat(5,1fr);gap:5px;">
+                    <div style="background:#ff0000;height:20px;border-radius:3px;" onclick="setTextColor('#ff0000')"></div>
+                    <div style="background:#00ff00;height:20px;border-radius:3px;" onclick="setTextColor('#00ff00')"></div>
+                    <div style="background:#0000ff;height:20px;border-radius:3px;" onclick="setTextColor('#0000ff')"></div>
+                    <div style="background:#ffff00;height:20px;border-radius:3px;" onclick="setTextColor('#ffff00')"></div>
+                    <div style="background:#ff00ff;height:20px;border-radius:3px;" onclick="setTextColor('#ff00ff')"></div>
+                    <div style="background:#00ffff;height:20px;border-radius:3px;" onclick="setTextColor('#00ffff')"></div>
+                    <div style="background:#ffffff;height:20px;border-radius:3px;" onclick="setTextColor('#ffffff')"></div>
+                    <div style="background:#ff8800;height:20px;border-radius:3px;" onclick="setTextColor('#ff8800')"></div>
+                    <div style="background:#8800ff;height:20px;border-radius:3px;" onclick="setTextColor('#8800ff')"></div>
+                    <div style="background:#0088ff;height:20px;border-radius:3px;" onclick="setTextColor('#0088ff')"></div>
+                  </div>
+                  <div style="padding:10px;display:flex;align-items:center">
+                    <input type="color" id="customColor" style="width:100px" onchange="setTextColor(this.value)">
+                    <span style="margin-left:10px">自定义</span>
+                  </div>
+                  
+                  <!-- 美化渐变色选择区域 -->
+                  <div style="padding:10px;">
+                    <div style="margin-bottom:8px;font-size:0.9em;color:#aaa;">
+                      <i class="fa-solid fa-fill-drip"></i> 渐变色选项
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px;">
+                      <div class="gradient-btn" style="background:linear-gradient(90deg, #ff0000, #0000ff);" 
+                           onclick="setGradientColor('#ff0000', '#0000ff')"></div>
+                      <div class="gradient-btn" style="background:linear-gradient(90deg, #00ff00, #ff00ff);" 
+                           onclick="setGradientColor('#00ff00', '#ff00ff')"></div>
+                      <div class="gradient-btn" style="background:linear-gradient(90deg, #0000ff, #ffff00);" 
+                           onclick="setGradientColor('#0000ff', '#ffff00')"></div>
+                    </div>
+                    <div style="display:flex;gap:8px;">
+                      <input type="color" id="gradientColor1" style="flex:1;height:30px;" title="起始颜色">
+                      <input type="color" id="gradientColor2" style="flex:1;height:30px;" title="结束颜色">
+                      <button onclick="applyCustomGradient()" style="padding:0 8px;border-radius:4px;background:#444;color:white;">
+                        <i class="fa-solid fa-check"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div><i class="fa-solid fa-snowflake"></i> 雪量控制
+                <div class="shieldlist">
+                  <div style="padding:10px;display:flex;align-items:center">
+                    <input type="range" min="0" max="500" value="50" id="snowAmount" 
+                      style="width:100px" oninput="updateSnowAmount(this.value)">
+                    <span id="snowValue" style="margin-left:10px">50</span>
+                  </div>
+                  <div style="padding:10px;color:#ff9800;font-size:0.8em;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> 
+                    雪花值过大可能会影响班级一体机，请谨慎调整雪量！
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -227,11 +294,11 @@
           <i class="fa-solid fa-image"></i>
           <span id="bg">背景：学校大门</span>
         </p>
-        <p><a href="https://gitee.com/txecyhy/txec-eveningself-studyclock"><i class="fa-brands fa-git"></i>
-            源码 <span id="v3.5.3-R2">(Gitee)</span></a>
+        <p><a href="https://gitee.com/h2ocl/txec-gedc-preview"><i class="fa-brands fa-git"></i>
+            源码 <span id="v3.6 Beta">(Gitee)</span></a>
         </p>
         <p><i class="fa-solid fa-file-arrow-up"></i>
-          v3.5.3-R2 一些小更改, 根据学校要求删除了讨论区
+          v3.6 Beta 添加了两个实验性功能(注:现在还在测试中)
         </p>
       </div>
     </footer>
@@ -241,16 +308,25 @@
   <script>
     // 从Gitee API获取更新
     fetch('https://gitee.com/api/v5/repos/h2ocl/txec-gedc-preview')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
         const updateTime = new Date(data.updated_at).toLocaleString('zh-CN');
-        const versionElement = document.getElementById('v3.5.3-R2-Release');
+        const versionElement = document.getElementById('v3.5.3-R2');
         versionElement.innerHTML = `(Gitee) 最后更新: ${updateTime}`;
       })
       .catch(error => {
         console.error('获取更新失败:', error);
+        // Fallback to local version if API fails
+        const versionElement = document.getElementById('v3.5.3-R2');
+        versionElement.innerHTML = `(Gitee) 本地版本`;
       });
   </script>
+  <!-- 移除以下Gitee API更新代码 -->
   <script src="./js/TimeGradeEight.js" defer data-dependencies="clock"></script>
   <script src="./js/search.js" defer data-dependencies="clock"></script>
   <script src="./js/msg.js"></script>
@@ -259,4 +335,90 @@
   <script src="./js/commit.js" 
     onload="getLastCommit(document.getElementById('v3.5.3-R2'), 'txecyhy/txec-eveningself-studyclock')"></script>
   <script src="./js/snow.js"></script>
+  <script>
+      let snowflakes = []; // 存储所有雪花对象
+      let maxSnowflakes = 50; // 默认雪花数量
+      let snowInterval; // 雪花生成间隔器
+      
+      function updateSnowAmount(value) {
+        document.getElementById('snowValue').textContent = value;
+        maxSnowflakes = parseInt(value);
+        
+        // 添加雪量过大警告
+        if(value > 300) {
+          alert("警告：雪花值过大可能会严重影响班级一体机性能！");
+        }
+        
+        // 清除现有的雪花生成间隔
+        if(snowInterval) clearInterval(snowInterval);
+        
+        // 根据雪量调整生成频率 (100ms-1000ms)
+        const interval = 1000 - (900 * (value/500));
+        snowInterval = setInterval(createSnowflake, interval);
+        
+        // 如果当前雪花数量超过最大值，移除多余的雪花
+        while(snowflakes.length > maxSnowflakes && snowflakes.length > 0) {
+          const flake = snowflakes.pop();
+          if(flake && flake.element && flake.element.parentNode) {
+            flake.element.parentNode.removeChild(flake.element);
+          }
+        }
+      }
+      
+      function setClockColor(color) {
+        document.getElementById('clock').style.color = color;
+        document.getElementById('timer').style.color = color;
+        // 保存到本地存储
+        localStorage.setItem('clockColor', color);
+      }
+      
+      function setTextColor(color) {
+        // 设置所有文字颜色
+        const textElements = document.querySelectorAll('#subject, #duration, #clock, #timer, #timersub, #activity');
+        textElements.forEach(el => {
+          el.style.color = color;
+          el.style.backgroundImage = 'none';
+        });
+        localStorage.setItem('textColor', color);
+      }
+      
+      function setGradientColor() {
+        const color1 = prompt('请输入第一种颜色 (如 #ff0000 或 red)', '#ff0000');
+        if(!color1) return;
+        
+        const color2 = prompt('请输入第二种颜色 (如 #0000ff 或 blue)', '#0000ff');
+        if(!color2) return;
+        
+        const gradient = `linear-gradient(90deg, ${color1}, ${color2})`;
+        const textElements = document.querySelectorAll('#subject, #duration, #clock, #timer, #timersub, #activity');
+        
+        textElements.forEach(el => {
+          el.style.backgroundImage = gradient;
+          el.style.webkitBackgroundClip = 'text';
+          el.style.backgroundClip = 'text';
+          el.style.color = 'transparent';
+        });
+        
+        localStorage.setItem('textGradient', gradient);
+      }
+      
+      // 初始化时读取保存的颜色
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedColor = localStorage.getItem('textColor');
+        const savedGradient = localStorage.getItem('textGradient');
+        
+        if(savedGradient) {
+          const textElements = document.querySelectorAll('#subject, #duration, #clock, #timer, #timersub, #activity');
+          textElements.forEach(el => {
+            el.style.backgroundImage = savedGradient;
+            el.style.webkitBackgroundClip = 'text';
+            el.style.backgroundClip = 'text';
+            el.style.color = 'transparent';
+          });
+        } else if(savedColor) {
+          setTextColor(savedColor);
+        }
+      });
+    </script>
+<script src="./js/color.js" defer></script>
 </body>
